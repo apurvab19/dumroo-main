@@ -1,0 +1,209 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom CSS Variables for Brand Colors */
+:root {
+  --brand-50: #eff6ff;
+  --brand-100: #dbeafe;
+  --brand-200: #bfdbfe;
+  --brand-300: #93c5fd;
+  --brand-400: #60a5fa;
+  --brand-500: #3b82f6;
+  --brand-600: #2563eb;
+  --brand-700: #1d4ed8;
+  --brand-800: #1e40af;
+  --brand-900: #1e3a8a;
+  --brand-950: #172554;
+  --brand-aux1: #8b5cf6;
+}
+
+/* Custom Animations */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Custom Utility Classes */
+@layer utilities {
+  .perspective-1000 {
+    perspective: 1000px;
+  }
+  
+  .transform-style-3d {
+    transform-style: preserve-3d;
+  }
+  
+  .backface-hidden {
+    backface-visibility: hidden;
+  }
+  
+  .rotate-y-180 {
+    transform: rotateY(180deg);
+  }
+}
+
+/* Global Styles */
+/* Add this to your CSS file (e.g., globals.css or a dedicated CSS module) */
+/* Add this to your CSS file (e.g., globals.css or a dedicated CSS module) */
+
+.liquid-morph-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: #001;
+}
+
+.liquid-morph-element {
+  /* You might need to adjust width/height or remove them here
+     if your Button component already handles sizing well with Tailwind.
+     The key is that the Button itself becomes the morphing element. */
+  /* width: 250px; */ /* Consider if you need this or if Tailwind handles it */
+  /* height: 100px; */ /* Consider if you need this or if Tailwind handles it */
+  
+  background: #1E88E5; /* This will be overridden by your Button's bg-brand-600,
+                          but keep it for the ::before pseudo-element's context */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  border-radius: 50px; /* This will affect the initial shape */
+  overflow: hidden;
+  transition: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  
+  /* Ensure the Button's own styles don't conflict too much.
+     For instance, if your button already has a border-radius,
+     the 50px here might be overridden or need adjustment. */
+}
+
+/* Adjustments for the specific buttons in your HeroContent: */
+/* Override specific button styles that might conflict with the morph effect's base */
+.liquid-morph-element.bg-brand-600 {
+    background: #1E88E5; /* Ensure this background is used for the morph effect if needed,
+                            or adjust the conic-gradient in ::before to use brand colors */
+}
+
+/* For the outline button */
+.liquid-morph-element.border-brand-600 {
+    /* You might need to adjust how the outline button's border
+       interacts with the morphing background */
+    border: none; /* Remove default border to let the morph effect handle it */
+    background: transparent; /* Start with transparent background */
+}
+.liquid-morph-element.border-brand-600 span {
+    color: #0a2342; /* Set initial text color for outline button */
+}
+
+
+.liquid-morph-element span {
+  color: #fff;
+  font-size: 1 rem; /* Adjust as needed, your button might have its own text size */
+  position: relative;
+  z-index: 2;
+  /* Ensure this z-index is higher than the ::before pseudo-element */
+}
+
+.liquid-morph-element::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /* Adjust this conic-gradient to use your brand colors (#brand-600)
+     for a more integrated look. Example using brand colors: */
+  background: conic-gradient(
+    var(--brand-600) 0deg, /* Assuming you have CSS variables for Tailwind colors */
+    #55bff8 120deg,       /* A darker shade for the core of the button */
+    var(--brand-600) 240deg
+  );
+  /* If you don't have CSS variables for brand colors, replace `var(--brand-600)` with
+     the actual hex code for your brand-600 color. */
+
+  transition: all 0.6s ease;
+  opacity: 0;
+  transform: scale(0);
+  z-index: 1; /* Ensure it's below the span text */
+}
+
+.liquid-morph-element:hover {
+  border-radius: 10px; /* This will override the initial rounded-full (50px) on hover */
+  transform: rotate(0deg); /* Changed from 15deg to 0deg to avoid rotation if not desired */
+  /* If you want a slight rotation, keep 15deg.
+     If you want only the morph, set to 0deg or remove. */
+}
+
+.liquid-morph-element:hover::before {
+  opacity: 1; /* Adjust transparency of the morph effect */
+  transform: scale(2);
+}
+
+/* Optional: Further refinement for hover states based on your existing Tailwind classes */
+.liquid-morph-element.bg-brand-600:hover {
+    background: var(--brand-700); /* Retain existing hover background color from Tailwind */
+}
+
+.liquid-morph-element.border-brand-600:hover {
+    background: var(--brand-50); /* Retain existing hover background color from Tailwind */
+    color: var(--brand-600); /* Ensure text color remains consistent */
+}
+
+.shiny-text {
+  /* Basic text styling if not already applied by Tailwind */
+  color: #333; /* Or your desired default text color */
+  
+  /* Apply a gradient that will be animated */
+  background: linear-gradient(90deg, #ccc, #1E88E5, #ccc); /* Light, Dark, Light for shiny effect */
+  background-size: 200% auto; /* Make the gradient wider than the text */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  
+  /* Animation for the shiny effect */
+  animation: shine 3s linear infinite; /* Adjust duration as needed */
+}
+
+@keyframes shine {
+  to {
+    background-position: 200% center; /* Move the gradient across the text */
+  }
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #a8a8a8;
+} 
