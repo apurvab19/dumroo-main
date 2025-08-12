@@ -1,5 +1,5 @@
 import React from 'react';
-import { cn } from '../../lib/utils';
+import { cn } from '../../../lib/utils';
 import type { FeatureCardProps } from './types';
 
 const FeatureCard: React.FC<FeatureCardProps> = ({ title, description, icon: Icon }) => {

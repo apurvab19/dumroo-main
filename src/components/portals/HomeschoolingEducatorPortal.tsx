@@ -1,10 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { 
-  Home, BookOpen, Brain, Sparkles, Target, 
-  Users, Calendar, ChevronRight, Star, Award, Trophy,
+  Home, BookOpen, Brain, Target, 
+  ChevronRight, Star, Trophy,
   BarChart2, Lightbulb, Zap, FileText, Layout,
-  BookMarked, GraduationCap, BookOpenCheck, MessageSquare
+  BookMarked, GraduationCap, BookOpenCheck
 } from 'lucide-react';
 import { cn } from '../../lib/utils';
 import Navigation from '../landing/Navigation';

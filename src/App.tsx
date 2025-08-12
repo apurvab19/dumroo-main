@@ -1,4 +1,4 @@
-import React from 'react';
+// import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Landing from './components/landing';
 import About from './components/About';
@@ -33,8 +33,6 @@ import ParentsPortal from './components/portals/ParentsPortal';
 import AdminsPortal from './components/portals/AdminsPortal';
 import HomeschoolingEducatorPortal from './components/portals/HomeschoolingEducatorPortal';
 
-// UI Components
-import Toast from './ui/Toast';
 
 function App() {
   return (
@@ -78,8 +76,6 @@ function App() {
           <Route path="/portals/homeschooling" element={<HomeschoolingEducatorPortal />} />
         </Routes>
         
-        {/* Global Toast Component */}
-        <Toast />
       </div>
     </Router>
   );

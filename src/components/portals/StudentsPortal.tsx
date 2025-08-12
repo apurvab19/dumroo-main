@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { 
   GraduationCap, BookOpen, Brain, Target, Users, 
-  ChevronRight, Star, Award, Trophy, Layout, Zap,
+  ChevronRight, Star, Trophy, Zap,
   FileText, Lightbulb, MessageSquare, Sparkles, Gamepad
 } from 'lucide-react';
 import { cn } from '../../lib/utils';

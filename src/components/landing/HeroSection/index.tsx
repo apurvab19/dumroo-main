@@ -105,7 +105,7 @@ const Hero: React.FC = () => {
               {/* Wide top-right image (2x1) */}
               <div className="col-span-2 row-span-1 rounded-2xl overflow-hidden transition-transform transform hover:scale-[1.02] hover:shadow-xl">
                 <img
-                  src="https://media.assettype.com/deccanherald%2F2024-12-13%2Fe6mk8i41%2Ffile7wzentnxtxxrnvwwi72.jpg"
+                  src="https://cdn.pixabay.com/photo/2022/04/04/16/41/technology-7111795_1280.jpg"
                   alt="Collaboration"
                   className="w-full h-full object-cover"
                 />
@@ -114,7 +114,7 @@ const Hero: React.FC = () => {
               {/* Small square images */}
               <div className="col-span-1 row-span-1 rounded-2xl overflow-hidden transition-transform transform hover:scale-[1.02] hover:shadow-xl">
                 <img
-                  src="https://images.prismic.io/bakertilly/ZxAvs4F3NbkBXmmQ_Artificialintelligenceinpalmofmanshand.jpg"
+                  src="https://images.pexels.com/photos/9783353/pexels-photo-9783353.jpeg"
                   alt="Presentation"
                   className="w-full h-full object-cover"
                 />
@@ -122,7 +122,7 @@ const Hero: React.FC = () => {
 
               <div className="col-span-1 row-span-1 rounded-2xl overflow-hidden transition-transform transform hover:scale-[1.02] hover:shadow-xl">
                 <img
-                  src="https://static.vecteezy.com/system/resources/thumbnails/030/710/111/small_2x/happy-male-teacher-in-an-elementary-school-classroom-generative-ai-photo.jpg"
+                  src="https://images.pexels.com/photos/5212703/pexels-photo-5212703.jpeg"
                   alt="Coding"
                   className="w-full h-full object-cover"
                 />
@@ -131,8 +131,8 @@ const Hero: React.FC = () => {
               {/* Wide bottom image (2x1) */}
               <div className="col-span-2 row-span-1 rounded-2xl overflow-hidden transition-transform transform hover:scale-[1.02] hover:shadow-xl">
                 <img
-                  src="https://www.shutterstock.com/image-photo/elearning-technology-webinar-online-education-600nw-2473841673.jpg"
-                  alt="Workspace"
+                  src="https://images.unsplash.com/photo-1718241905462-56e7b9f722f3?q=80&w=1228&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                  alt="ai"
                   className="w-full h-full object-cover"
                 />
               </div>
@@ -140,8 +140,8 @@ const Hero: React.FC = () => {
               {/* Final bottom-right image (2x1) */}
               <div className="col-span-2 row-span-1 rounded-2xl overflow-hidden transition-transform transform hover:scale-[1.02] hover:shadow-xl">
                 <img
-                  src="https://media.istockphoto.com/id/1783743772/photo/female-speaker-giving-a-presentation-during-business-seminar-at-convention-center.jpg?s=612x612&w=0&k=20&c=T0Sit9sSbrafPXlY0vjadvEf-dyI8-t4uTY5W1TFzWU="
-                  alt="Innovation"
+                  src="https://images.pexels.com/photos/3401402/pexels-photo-3401402.jpeg"
+                  alt="ed"
                   className="w-full h-full object-cover"
                 />
               </div>

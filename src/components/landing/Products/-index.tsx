@@ -1,9 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import {
-  Brain, BookOpen, TrendingUp, Activity, Users, Bell,
+  Brain, TrendingUp, Activity, Users, Bell,
   BarChart2, Compass, GraduationCap, Bot, Mic, Users2,
-  Trophy, CheckCircle
+  CheckCircle
 } from 'lucide-react';
 // Removed the problematic import for 'cn' utility
 // import { cn } from '../../../lib/utils';

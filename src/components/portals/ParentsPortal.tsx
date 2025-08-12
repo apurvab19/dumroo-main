@@ -1,10 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { 
-  Users, BookOpen, Brain, Target, Calendar, 
-  ChevronRight, Star, Award, Trophy, Layout,
-  FileText, MessageSquare, Bell, Activity,
-  Sparkles, Eye, Zap, Lightbulb
+  Users, Calendar, 
+  ChevronRight, Star, Award, Trophy,
+  MessageSquare, Bell, Activity,
+  Eye, Zap, Lightbulb
 } from 'lucide-react';
 import { cn } from '../../lib/utils';
 import Navigation from '../landing/Navigation';

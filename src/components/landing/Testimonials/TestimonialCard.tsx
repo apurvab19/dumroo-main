@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Star, ChevronDown, ChevronUp } from 'lucide-react';
+// import { Star, ChevronDown, ChevronUp } from 'lucide-react';
 import type { TestimonialCardProps } from './types';
 import { cn } from '../../../lib/utils';
 import { motion } from 'framer-motion';

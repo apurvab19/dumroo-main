@@ -61,23 +61,25 @@ const HeroContent: React.FC<HeroContentProps> = ({ onWatchDemo }) => {
           </Button>
 
           <Button
-  variant="outline"
-  size="lg"
-  onClick={() =>
-    window.open(
-      "https://www.loom.com/embed/68884a8305f644b9a2b5ae2413fbf755?sid=97644856-7a8c-494c-a3c7-cde7e8098fde&hide_share=true&hideEmbedTopBar=true&hide_title=true&hide_owner=true&hideBrowserUI=true&hideControls=true&autoplay=0&muted=0",
-      "_blank",
-      "noopener,noreferrer"
-    )
-  }
-  className="border border-brand-600 text-brand-600 hover:bg-brand-50 rounded-full px-6 py-3 transition-all"
->
-  Watch Demo
-</Button>
+            variant="outline"
+            size="lg"
+            onClick={() => {
+              if (onWatchDemo) {
+                onWatchDemo();
+              } else {
+                window.open(
+                  "https://www.loom.com/embed/68884a8305f644b9a2b5ae2413fbf755?sid=97644856-7a8c-494c-a3c7-cde7e8098fde&hide_share=true&hideEmbedTopBar=true&hide_title=true&hide_owner=true&hideBrowserUI=true&hideControls=true&autoplay=0&muted=0",
+                  "_blank",
+                  "noopener,noreferrer"
+                );
+              }
+            }}
+            className="border border-brand-600 text-brand-600 hover:bg-brand-50 rounded-full px-6 py-3 transition-all"
+          >
+            Watch Demo
+          </Button>
         </div>
       </div>
-
-      
     </div>
   );
 };

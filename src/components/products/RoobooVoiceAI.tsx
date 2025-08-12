@@ -1,5 +1,5 @@
 import React from 'react';
-import { Mic, MessageSquare, Brain, Sparkles, Users } from 'lucide-react';
+import { Mic, MessageSquare, Brain, Sparkles } from 'lucide-react';
 import PublicLayout from '../layout/PublicLayout';
 
 const ConversationalAI: React.FC = () => {

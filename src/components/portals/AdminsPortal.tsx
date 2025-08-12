@@ -1,10 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { 
-  Building2, School, Users, BarChart2, Settings, Shield, 
+  Building2, Users, BarChart2, Settings, Shield, 
   Database, ChevronRight, Brain, Sparkles, Award, Layout,
-  FileText, UserPlus, BellRing, Activity, GraduationCap, BookOpen, Target, Star, Trophy, Zap,
-  Lightbulb, MessageSquare
+  UserPlus, BellRing, Activity,
 } from 'lucide-react';
 import { cn } from '../../lib/utils';
 import Navigation from '../landing/Navigation';

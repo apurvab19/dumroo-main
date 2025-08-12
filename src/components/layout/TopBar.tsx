@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { Bell, Menu, Sun, Moon, Clock, Mic, Loader2, X, Trophy } from 'lucide-react';
-import Button from '../ui/Button';
-import Dropdown from '../ui/Dropdown';
+import { Bell, Menu, Sun, Moon, Clock, Mic, Loader2, X } from 'lucide-react';
+import Button from '../../ui/Button';
+import Dropdown from '../../ui/Dropdown';
 import NotificationDropdown from './NotificationDropdown';
 import TasksDropdown from './TasksDropdown';
 import useAuthStore from '../../stores/auth';
@@ -40,15 +40,11 @@ const TopBar: React.FC<TopBarProps> = ({
   const { isDark, toggleTheme } = useThemeStore();
   const isMobile = useMediaQuery('(max-width: 640px)');
 
-  const { 
-    isConnecting,
-    isConnected,
-    connect,
-    disconnect
-  } = useRealtimeVoice({
-    onMessage: (message) => console.log('Voice message:', message)
-  });
-
+  const { isConnecting, isConnected, connect, disconnect } = useRealtimeVoice({
+  onMessage: (message: unknown) => {
+    console.log("Voice message:", message);
+  }
+});
   const handleLogout = () => {
     logout();
     navigate('/login');

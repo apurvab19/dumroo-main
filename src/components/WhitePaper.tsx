@@ -1,6 +1,5 @@
 import React from 'react';
-import { Lightbulb, Brain, Sparkles, Target, BarChart as ChartBar, Users, Shield, Lock, Cloud, Zap, Award, CheckCircle, Mail, Globe } from 'lucide-react';
-import { cn } from '../lib/utils';
+import { Lightbulb, Brain, Sparkles, Target, BarChart as ChartBar, Users, Shield, Lock, Cloud, CheckCircle, Mail, Globe } from 'lucide-react';
 import PublicLayout from './layout/PublicLayout';
 
 const WhitePaper: React.FC = () => {

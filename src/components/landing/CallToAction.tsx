@@ -4,11 +4,11 @@ import { useNavigate } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 import Button from '../../ui/Button';
 
-const roadmap = [
-  { phase: "Now", detail: "Personalized AI-powered lessons" },
-  { phase: "Next", detail: "AI grading & feedback assistant" },
-  { phase: "Future", detail: "Global educator collaboration network" },
-];
+// const roadmap = [
+//   { phase: "Now", detail: "Personalized AI-powered lessons" },
+//   { phase: "Next", detail: "AI grading & feedback assistant" },
+//   { phase: "Future", detail: "Global educator collaboration network" },
+// ];
 
 const CallToAction: React.FC = () => {
   const navigate = useNavigate();

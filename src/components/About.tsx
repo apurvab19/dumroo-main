@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { GraduationCap, Users, Globe, Award, Rocket, Brain, Linkedin } from 'lucide-react';
 import { cn } from '../lib/utils';
 import PublicLayout from './layout/PublicLayout';
+import { Linkedin, Brain, Users, Award } from 'lucide-react';
 
 interface TeamMember {
   name: string;
@@ -35,19 +35,20 @@ const leadershipTeam: TeamMember[] = [
   }
 ];
 
-
 const TeamCard: React.FC<{ member: TeamMember }> = ({ member }) => {
   const [isFlipped, setIsFlipped] = useState(false);
 
   return (
-    <div 
+    <div
       className="relative h-[400px] w-full perspective-1000 cursor-pointer"
       onClick={() => setIsFlipped(!isFlipped)}
     >
-      <div className={cn(
-        "absolute inset-0 w-full h-full transform-style-3d transition-all duration-500",
-        isFlipped ? "rotate-y-180" : ""
-      )}>
+      <div
+        className={cn(
+          'absolute inset-0 w-full h-full transform-style-3d transition-all duration-500',
+          isFlipped ? 'rotate-y-180' : ''
+        )}
+      >
         {/* Front */}
         <div className="absolute inset-0 backface-hidden">
           <div className="h-full bg-white rounded-xl shadow-lg border border-gray-100 p-6 text-center">
@@ -57,15 +58,15 @@ const TeamCard: React.FC<{ member: TeamMember }> = ({ member }) => {
                 alt={member.name}
                 className="w-32 h-32 rounded-full mx-auto object-cover"
               />
-              <a 
+              <a
                 href={member.linkedIn}
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={(e) => e.stopPropagation()}
                 className={cn(
-                  "absolute bottom-0 right-1/3 p-2 rounded-full",
-                  "bg-[#0A66C2] text-white",
-                  "transform transition-transform duration-300 hover:scale-110"
+                  'absolute bottom-0 right-1/3 p-2 rounded-full',
+                  'bg-[#0A66C2] text-white',
+                  'transform transition-transform duration-300 hover:scale-110'
                 )}
               >
                 <Linkedin className="h-4 w-4" />

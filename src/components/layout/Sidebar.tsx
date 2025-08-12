@@ -12,12 +12,10 @@ import {
   X,
   User,
   LogOut,
-  HelpCircle,
-  Shield
+  HelpCircle
 } from 'lucide-react';
 import { cn } from '../../lib/utils';
 import useAuthStore from '../../stores/auth';
-import useThemeStore from '../../stores/theme';
 
 interface SidebarProps {
   onClose?: () => void;
@@ -26,9 +24,9 @@ interface SidebarProps {
 const Sidebar: React.FC<SidebarProps> = ({ onClose }) => {
   const { user, logout } = useAuthStore();
   const navigate = useNavigate();
-  const { isDark } = useThemeStore();
+  // const { isDark } = useThemeStore();
 
-  const isSuperAdmin = user?.role === 'super_admin';
+  // const isSuperAdmin = user?.role === 'super_admin';
 
   const navigationItems = [
     { name: "Teacher's AI Toolkit", icon: Sparkles, href: '/toolkit' },

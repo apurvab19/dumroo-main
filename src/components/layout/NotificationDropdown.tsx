@@ -1,5 +1,5 @@
 import React from 'react';
-import { Clock, MessageSquare, BookOpen, Bell } from 'lucide-react';
+import { MessageSquare, BookOpen, Bell } from 'lucide-react';
 import { cn } from '../../lib/utils';
 
 interface NotificationDropdownProps {
@@ -30,7 +30,7 @@ const activities = [
   }
 ];
 
-const NotificationDropdown: React.FC<NotificationDropdownProps> = ({ onClose }) => {
+const NotificationDropdown: React.FC<NotificationDropdownProps> = () => {
   return (
     <div className="space-y-2">
       {activities.map((activity) => (

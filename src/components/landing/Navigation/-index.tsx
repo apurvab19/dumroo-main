@@ -2,6 +2,8 @@ import React, { useState, useEffect, useRef } from 'react';
 // import { Link } from 'react-router-dom'; // Removed Link import
 import { Menu, X, ChevronDown, ChevronUp } from 'lucide-react'; // Import all necessary icons
 import type { NavItem } from './types';
+import LogoDefault from '../../../ui/Logo/LogoDefault';
+
 
 // Placeholder for DesktopNav component
 const DesktopNav: React.FC<{ links: NavItem[] }> = ({ links }) => {
@@ -198,9 +200,9 @@ const MobileMenu: React.FC<{ isOpen: boolean; links: NavItem[]; onClose: () => v
 };
 
 // Placeholder for Logo component
-const Logo: React.FC<{ variant: string }> = ({ variant }) => {
-  return <div className="text-brand-main text-xl font-bold">Logo</div>;
-};
+// const Logo: React.FC<{ variant: string }> = ({ variant }) => {
+//   return <div className="text-brand-main text-xl font-bold">Logo</div>;
+// };
 
 const navLinks: NavItem[] = [
   {
@@ -261,7 +263,7 @@ const Navigation: React.FC = () => {
         <div className="flex justify-between h-16 items-center w-full">
           {/* Changed Link to <a> tag to avoid Router context error in this isolated placeholder */}
           <a href="/" className="flex-shrink-0 min-w-0 w-auto max-w-[160px] sm:max-w-[200px] md:max-w-[240px] transform transition-transform duration-300 hover:scale-105">
-            <Logo variant="default" />
+            <LogoDefault />
           </a>
           
           <DesktopNav links={navLinks} /> 

@@ -1,4 +1,4 @@
-import React from 'react';
+// import React from 'react';
 import { Brain, Layers, TrendingUp } from 'lucide-react';
 
 const features = [

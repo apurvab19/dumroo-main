@@ -8,6 +8,7 @@ import { cn } from '../../lib/utils';
 import useThemeStore from '../../stores/theme';
 import { useMediaQuery } from '../../hooks/useMediaQuery';
 
+
 const DashboardLayout: React.FC = () => {
   const [isLeftHovering, setIsLeftHovering] = useState(true); // Start with true for initial show
   const [isRightHovering, setIsRightHovering] = useState(false);

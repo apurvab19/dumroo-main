@@ -34,28 +34,28 @@ const roles = [
     title: 'For Teachers',
     features: roleFeatures.teachers,
     color: 'text-sky-600',
-    img: 'https://t3.ftcdn.net/jpg/02/65/18/30/360_F_265183061_NkulfPZgRxbNg3rvYSNGGwi0iD7qbmOp.jpg',
+    img: 'https://images.unsplash.com/photo-1583468982228-19f19164aee2?q=80&w=1011&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
   },
   {
     icon: Users,
     title: 'For Students',
     features: roleFeatures.students,
     color: 'text-emerald-600',
-    img: 'https://images.unsplash.com/photo-1523580846011-d3a5bc25702b?auto=format&fit=crop&w=800&q=80',
+    img: 'https://images.unsplash.com/photo-1531545514256-b1400bc00f31?q=80&w=1074&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
   },
   {
     icon: UserCog,
     title: 'For Administrators',
     features: roleFeatures.administrators,
     color: 'text-indigo-600',
-    img: 'https://images.unsplash.com/photo-1551836022-4c4c79ecde51?auto=format&fit=crop&w=800&q=80',
+    img: 'https://images.pexels.com/photos/3183197/pexels-photo-3183197.jpeg',
   },
   {
     icon: Users2,
     title: 'For Parents',
     features: roleFeatures.parents,
     color: 'text-amber-600',
-    img: 'https://img.freepik.com/free-photo/parents-playing-with-child_23-2148463530.jpg?semt=ais_hybrid&w=740&q=80',
+    img: 'https://images.pexels.com/photos/1128317/pexels-photo-1128317.jpeg',
   },
 ];
 

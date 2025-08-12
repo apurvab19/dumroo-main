@@ -2,9 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { 
   GraduationCap, BookOpen, Brain, Sparkles, Target, 
-  Users, Calendar, ChevronRight, Star, Award, Trophy,
+  Users, ChevronRight, Star, Award, Trophy,
   BarChart2, Lightbulb, Zap, FileText, Layout,
-  BookMarked, BookOpenCheck, MessageSquare
 } from 'lucide-react';
 import { cn } from '../../lib/utils';
 import Navigation from '../landing/Navigation';

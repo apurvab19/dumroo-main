@@ -1,5 +1,5 @@
 import React from 'react';
-import Library from '../dashboard/Library';
+import Library from '../../dashboard/Library';
 import NotificationDropdown from './NotificationDropdown';
 import TasksDropdown from './TasksDropdown';
 import { useMediaQuery } from '../../hooks/useMediaQuery';
