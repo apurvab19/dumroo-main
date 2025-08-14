@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom'; // Assuming useNavigate is used elsewhere
-import { ChevronDown, ChevronUp } from 'lucide-react';
+import { ChevronDown } from 'lucide-react';
 // import NavLink from './NavLink'; // Removed original import
 import { NavItem } from './types';
 // import { cn } from '../../../lib/utils'; // Removed original import
@@ -70,35 +70,41 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, links, onClose }) => {
 
   return (
     // Mobile menu container, visible only on small screens (changed from md:hidden)
-    <div className="lg:hidden py-4 border-t border-white/10 animate-in slide-in-from-top-4 fade-in duration-300 ease-out"> {/* Added entry animation */}
-      <div className="flex flex-col gap-2"> {/* Vertical stack of navigation items */}
+    <div className="lg:hidden p-4 animate-in slide-in-from-top-4 fade-in duration-300 ease-in-out">
+      <div className="flex flex-col gap-2">
         {links.map((link) => (
           <div key={link.id} className="flex flex-col">
             {link.children ? (
               <>
-                {/* Button to toggle dropdown for items with children */}
+                {/* Accordion toggle button */}
                 <button
                   onClick={() => setExpandedItem(expandedItem === link.label ? null : link.label)}
                   className={cn(
-                    "flex items-center justify-between",
-                    "text-brand-main/80 hover:text-brand-main transition-colors duration-200", // Text color transition
-                    "px-4 py-2 rounded-lg transform hover:-translate-y-0.5", // Added subtle text lift on hover
-                    expandedItem === link.label && "text-brand-main" // Keep text color consistent when expanded
+                    "flex w-full items-center justify-between",
+                    // Changed text to white for dark backgrounds
+                    "text-sm text-white/80 hover:text-white",
+                    // Subtle hover for a glowing effect on dark backgrounds
+                    "hover:bg-white/10",
+                    "py-2 px-4 rounded-md transition-all duration-200"
                   )}
                 >
-                  <span className="font-medium">{link.label}</span>
-                  {expandedItem === link.label ? (
-                    <ChevronUp className="h-4 w-4 transform rotate-180 transition-transform duration-200" /> // Rotates when expanded
-                  ) : (
-                    <ChevronDown className="h-4 w-4 transform transition-transform duration-200" /> // Default state
-                  )}
+                  <span>{link.label}</span>
+                  <ChevronDown
+                    className={cn(
+                      "h-4 w-4 transition-transform duration-300",
+                      expandedItem === link.label && "rotate-180"
+                    )}
+                  />
                 </button>
-                {/* Dropdown content, animated to slide in from left */}
+
+                {/* Dropdown content with a sleek zoom-in animation */}
                 {expandedItem === link.label && (
-                  <div className={cn(
-                    "mt-1 ml-4 space-y-1 border-l-2 border-brand-100 pl-4",
-                    "animate-in slide-in-from-left-4 fade-in duration-200 ease-out" // Added entry animation
-                  )}>
+                  <div
+                    className={cn(
+                      "mt-2 ml-4 space-y-1 border-l-2 border-white/20 pl-3", // Border color adapted for dark background
+                      "animate-in fade-in zoom-in-95 duration-200 ease-out" // Sleeker "reveal" animation
+                    )}
+                  >
                     {link.children.map((child) => (
                       <NavLink
                         key={child.id}
@@ -106,12 +112,14 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, links, onClose }) => {
                         label={child.label}
                         external={child.external}
                         onClick={() => {
-                          setExpandedItem(null); // Collapse dropdown
-                          onClose(); // Close mobile menu
+                          setExpandedItem(null);
+                          onClose();
                         }}
                         className={cn(
-                          "block text-brand-main/70 hover:text-brand-main transition-colors duration-200", // Text color transition
-                          "px-2 py-1.5 rounded-lg" // NavLink now handles the transform
+                          // Text color changed to white/light gray
+                          "block w-full text-left text-sm text-white/70",
+                          "hover:text-white hover:bg-white/10",
+                          "py-2 px-3 rounded-md transition-colors duration-200"
                         )}
                       />
                     ))}
@@ -124,26 +132,33 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, links, onClose }) => {
                 href={link.href}
                 label={link.label}
                 external={link.external}
-                onClick={onClose} // Close mobile menu on link click
+                onClick={onClose}
                 className={cn(
-                  "text-brand-main/80 hover:text-brand-main transition-colors duration-200", // Text color transition
-                  "px-4 py-2 rounded-lg" // NavLink now handles the transform
+                  // Changed text to white for dark backgrounds
+                  "block text-sm text-white/80 hover:text-white",
+                  "hover:bg-white/10",
+                  "py-2 px-4 rounded-md transition-all duration-200"
                 )}
               />
             )}
           </div>
         ))}
-        {/* Sign In button for mobile menu */}
-        <NavLink
-          href="/login"
-          label="Sign In"
-          onClick={onClose}
-          className={cn(
-            "bg-brand-aux1 text-brand-bg hover:bg-brand-aux1/90",
-            "px-4 py-2 rounded-full text-center mt-4",
-            "animate-in fade-in-50 duration-200 ease-out transform hover:scale-105 shadow-md hover:shadow-lg" // Enhanced button hover effects
-          )}
-        />
+
+        {/* Wrapper to center the auto-width "Sign In" button */}
+        <div className="mt-4 flex justify-center">
+          <NavLink
+            href="/login"
+            label="Sign In"
+            onClick={onClose}
+            className={cn(
+              // Styles matched with desktop button
+              "bg-brand-aux1 text-brand-bg text-sm",
+              "shadow-md hover:shadow-lg",
+              "px-4 py-2 rounded-md",
+              "transition-all duration-300 hover:-translate-y-0.5"
+            )}
+          />
+        </div>
       </div>
     </div>
   );

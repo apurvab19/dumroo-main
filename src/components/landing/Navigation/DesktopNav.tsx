@@ -94,74 +94,82 @@ const DesktopNav: React.FC<DesktopNavProps> = ({ links }) => {
   };
 
   return (
-    <div className="hidden lg:flex items-center gap-6 xl:gap-8">
-      {links && links.map((link) => (
-        <div
-          key={link.id}
-          className="relative"
-          onMouseEnter={() => handleMouseEnter(link.label)}
-          onMouseLeave={handleMouseLeave}
-        >
-          {link.children ? (
-            <>
-              <button
-                className={cn(
-                  "text-brand-main/80 hover:text-brand-main transition-colors duration-300",
-                  "flex items-center gap-1 group",
-                  "py-2 px-2 rounded-lg transform hover:-translate-y-0.5"
-                )}
-              >
-                <span className="inline-block">{link.label}</span>
-                <ChevronDown className={cn(
-                  "h-4 w-4 transition-transform duration-200 group-hover:translate-y-0.5",
-                  activeDropdown === link.label && "rotate-180"
-                )} />
-              </button>
-              {activeDropdown === link.label && (
-                <div
-                  ref={dropdownRef}
-                  onMouseEnter={handleDropdownMouseEnter}
-                  onMouseLeave={handleMouseLeave}
+    <div className="hidden lg:flex items-center gap-2">
+      {links &&
+        links.map((link) => (
+          <div
+            key={link.id}
+            className="relative"
+            onMouseEnter={() => handleMouseEnter(link.label)}
+            onMouseLeave={handleMouseLeave}
+          >
+            {link.children ? (
+              <>
+                <button
                   className={cn(
-                    "absolute top-full left-1/2 -translate-x-1/2 mt-2 py-2 z-[999]",
-                    "bg-white rounded-xl shadow-xl border border-gray-100",
-                    "animate-in fade-in slide-in-from-top-2 duration-200 ease-out",
-                    "w-56 p-2 flex flex-col space-y-1"
+                    "flex items-center gap-1.5 group",
+                    "text-sm text-brand-main/80 hover:text-brand-main",
+                    "hover:bg-black/5 dark:hover:bg-white/5",
+                    "py-2 px-3 rounded-md transition-all duration-200"
                   )}
                 >
-                  {link.children.map((child) => (
-                    <NavLink
-                      key={child.id}
-                      href={child.href}
-                      label={child.label}
-                      external={child.external}
-                      onClick={() => setActiveDropdown(null)}
-                      className={cn(
-                        "block text-left text-sm text-gray-700",
-                        "hover:text-brand-600",
-                        "transition-colors duration-200 rounded-lg",
-                        "py-2 px-3"
-                      )}
-                    />
-                  ))}
-                </div>
-              )}
-            </>
-          ) : (
-            <NavLink
-              href={link.href}
-              label={link.label}
-              external={link.external}
-              className="text-brand-main/80 hover:text-brand-main transition-colors duration-300 py-2 px-2 rounded-lg"
-            />
-          )}
-        </div>
-      ))}
+                  <span>{link.label}</span>
+                  <ChevronDown
+                    className={cn(
+                      "h-4 w-4 transition-transform duration-300",
+                      activeDropdown === link.label ? "rotate-180" : "group-hover:translate-y-0.5"
+                    )}
+                  />
+                </button>
+                {activeDropdown === link.label && (
+                  <div
+                    ref={dropdownRef}
+                    onMouseEnter={handleDropdownMouseEnter}
+                    onMouseLeave={handleMouseLeave}
+                    className={cn(
+                      "absolute top-full left-1/2 -translate-x-1/2 mt-2 w-56 p-1.5",
+                      "bg-white rounded-xl shadow-xl border border-gray-100",
+                      "animate-in fade-in slide-in-from-top-2 duration-200 ease-out z-[999]"
+                    )}
+                  >
+                    {link.children.map((child) => (
+                      <NavLink
+                        key={child.id}
+                        href={child.href}
+                        label={child.label}
+                        external={child.external}
+                        onClick={() => setActiveDropdown(null)}
+                        className={cn(
+                          "block w-full text-left text-sm text-gray-700",
+                          "hover:text-brand-600 hover:bg-gray-100", 
+                          "py-2 px-3 rounded-md transition-colors duration-200"
+                        )}
+                      />
+                    ))}
+                  </div>
+                )}
+              </>
+            ) : (
+              <NavLink
+                href={link.href}
+                label={link.label}
+                external={link.external}
+                className="text-sm text-brand-main/80 hover:text-brand-main hover:bg-black/5 dark:hover:bg-white/5 py-2 px-3 rounded-md transition-all duration-200"
+              />
+            )}
+          </div>
+        ))}
       {/* Sign In button */}
       <NavLink
         href="/login"
         label="Sign In"
-        className="bg-brand-aux1 text-brand-bg hover:bg-brand-aux1/90 px-4 py-2 rounded-full transition-all duration-300 transform hover:scale-105 shadow-md hover:shadow-lg"
+        className={cn(
+          "ml-2", 
+          "bg-brand-aux1 text-brand-bg text-sm", 
+          "shadow-md hover:shadow-lg",
+          "px-4 py-2 rounded-md",
+          "transition-all duration-300 hover:-translate-y-0.5" 
+        )}
       />
     </div>
   );

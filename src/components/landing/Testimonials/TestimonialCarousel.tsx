@@ -12,6 +12,7 @@ const TestimonialCarousel: React.FC<TestimonialCarouselProps> = ({ testimonials 
   const [itemsPerSlide, setItemsPerSlide] = useState(3);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
 
+  // Determine number of items per slide based on screen width
   useEffect(() => {
     const updateItemsPerSlide = () => {
       if (window.innerWidth < 768) {
@@ -31,29 +32,37 @@ const TestimonialCarousel: React.FC<TestimonialCarouselProps> = ({ testimonials 
   useEffect(() => {
     setCurrentIndex(0);
   }, [itemsPerSlide]);
-  
-  const totalSlides = useMemo(() => 
-    Math.ceil(testimonials.length / itemsPerSlide), 
-    [testimonials.length, itemsPerSlide]
+
+  // ✅ Pad testimonials so last slide is full
+  const filledTestimonials = useMemo(() => {
+    if (testimonials.length % itemsPerSlide === 0) return testimonials;
+    const missing = itemsPerSlide - (testimonials.length % itemsPerSlide);
+    return [...testimonials, ...testimonials.slice(0, missing)];
+  }, [testimonials, itemsPerSlide]);
+
+  const totalSlides = useMemo(
+    () => Math.ceil(filledTestimonials.length / itemsPerSlide),
+    [filledTestimonials.length, itemsPerSlide]
   );
-  
-  const currentSlide = useMemo(() => 
-    Math.floor(currentIndex / itemsPerSlide), 
+
+  const currentSlide = useMemo(
+    () => Math.floor(currentIndex / itemsPerSlide),
     [currentIndex, itemsPerSlide]
   );
 
+  // Auto-play logic
   useEffect(() => {
     if (!isAutoPlaying) return;
 
     const interval = setInterval(() => {
       setCurrentIndex((current) => {
         const nextIndex = current + itemsPerSlide;
-        return (nextIndex >= testimonials.length) ? 0 : nextIndex;
+        return nextIndex >= filledTestimonials.length ? 0 : nextIndex;
       });
     }, 5000);
 
     return () => clearInterval(interval);
-  }, [isAutoPlaying, testimonials.length, itemsPerSlide]);
+  }, [isAutoPlaying, filledTestimonials.length, itemsPerSlide]);
 
   const handleManualNavigation = (direction: 'prev' | 'next') => {
     setIsAutoPlaying(false);
@@ -61,10 +70,10 @@ const TestimonialCarousel: React.FC<TestimonialCarouselProps> = ({ testimonials 
       let newIndex;
       if (direction === 'next') {
         newIndex = current + itemsPerSlide;
-        return (newIndex >= testimonials.length) ? 0 : newIndex;
+        return newIndex >= filledTestimonials.length ? 0 : newIndex;
       } else {
         newIndex = current - itemsPerSlide;
-        return (newIndex < 0) ? (totalSlides - 1) * itemsPerSlide : newIndex;
+        return newIndex < 0 ? (totalSlides - 1) * itemsPerSlide : newIndex;
       }
     });
   };
@@ -72,13 +81,15 @@ const TestimonialCarousel: React.FC<TestimonialCarouselProps> = ({ testimonials 
   return (
     <div className="relative max-w-7xl mx-auto">
       <div className="overflow-hidden px-10 md:px-12 py-10">
-        <div 
+        <div
           className="flex transition-transform duration-700 ease-in-out"
-          style={{ transform: `translateX(-${currentIndex * (100 / itemsPerSlide)}%)` }}
+          style={{
+            transform: `translateX(-${currentIndex * (100 / itemsPerSlide)}%)`,
+          }}
         >
-          {testimonials.map((testimonial) => (
-            <div 
-              key={testimonial.id} 
+          {filledTestimonials.map((testimonial) => (
+            <div
+              key={`${testimonial.id}-${testimonial.name}`}
               className="flex-shrink-0 px-2 md:px-3"
               style={{ flexBasis: `${100 / itemsPerSlide}%` }}
             >
@@ -87,16 +98,18 @@ const TestimonialCarousel: React.FC<TestimonialCarouselProps> = ({ testimonials 
           ))}
         </div>
       </div>
-      
-      <button 
+
+      {/* Prev button */}
+      <button
         onClick={() => handleManualNavigation('prev')}
         className="absolute left-0 top-1/2 -translate-y-1/2 p-2 md:p-3 rounded-full bg-white shadow-lg hover:bg-gray-50 transition-all duration-200 hover:scale-110 group"
         aria-label="Previous testimonials"
       >
         <ChevronLeft className="h-5 w-5 md:h-6 md:w-6 text-gray-600 group-hover:text-brand-600" />
       </button>
-      
-      <button 
+
+      {/* Next button */}
+      <button
         onClick={() => handleManualNavigation('next')}
         className="absolute right-0 top-1/2 -translate-y-1/2 p-2 md:p-3 rounded-full bg-white shadow-lg hover:bg-gray-50 transition-all duration-200 hover:scale-110 group"
         aria-label="Next testimonials"
@@ -104,6 +117,7 @@ const TestimonialCarousel: React.FC<TestimonialCarouselProps> = ({ testimonials 
         <ChevronRight className="h-5 w-5 md:h-6 md:w-6 text-gray-600 group-hover:text-brand-600" />
       </button>
 
+      {/* Dots */}
       <div className="flex justify-center mt-8 gap-2">
         {Array.from({ length: totalSlides }).map((_, index) => (
           <button
@@ -113,8 +127,8 @@ const TestimonialCarousel: React.FC<TestimonialCarouselProps> = ({ testimonials 
               setCurrentIndex(index * itemsPerSlide);
             }}
             className={`w-2 h-2 rounded-full transition-all duration-300 ${
-              index === currentSlide 
-                ? 'bg-brand-600 w-6' 
+              index === currentSlide
+                ? 'bg-brand-600 w-6'
                 : 'bg-gray-300 hover:bg-gray-400'
             }`}
             aria-label={`Go to slide ${index + 1}`}

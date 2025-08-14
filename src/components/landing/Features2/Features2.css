@@ -1,76 +1,106 @@
 /*
-  Features2.css
-  - This file contains the styles for the hover card effect.
-  - It is imported by the Features2.tsx component.
-*/
+ * Features2.css
+ * Styling for the modern feature cards grid
+ */
 
+/* Base styles for each feature card */
 .feature-card {
-    position: relative;
-    border-radius: 10px;
-    overflow: hidden; /* Ensures the child elements conform to the border radius */
-    background-size: cover;
-    background-position: center;
-    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-  }
-  
-  /* Assigning unique background images to each card */
-  .feature-card-0 {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.3)), url("src/assets/smart-planning.jpg");
-  }
-  .feature-card-1 {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.3)), url("src/assets/intelligent-analytics.jpg");
-  }
-  .feature-card-2 {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.3)), url("src/assets/differentiated-learning.jpg");
-  }
-  .feature-card-3 {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.3)), url("src/assets/community-connection.jpg");
-  }
-  .feature-card-4 {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.3)), url("src/assets/ai-enhanced-navigation.jpg");
-  }
-  .feature-card-5 {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.3)), url("src/assets/dynamic-ieps.jpg");
-  }
-  
-  
-  /* Hover state for the background gradient */
-  .feature-card:hover {
-    transform: scale(1.05);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.2), 0 6px 6px rgba(0,0,0,0.23);
-  }
-  
-  .feature-card:hover .default-content {
-    opacity: 0;
-  }
-  
-  .feature-card:hover .hover-content {
-    opacity: 1;
-  }
-  
-  /*
-    The two content layers for the card.
-    'default-content' is visible by default.
-    'hover-content' is hidden by default and appears on hover.
-  */
-  .default-content, .hover-content {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    padding: 20px;
-    transition: opacity 0.5s ease-in-out;
-    backface-visibility: hidden; /* Prevents flickering during transition */
-  }
-  
-  .hover-content {
-    position: absolute;
-    top: 0;
-    left: 0;
-    opacity: 0;
-    background-color: rgba(158, 182, 244, 0.756); /* This is the overlay color from your example */
-    border-radius: 10px;
-  }
+  position: relative;
+  height: 170px; /* Smaller height */
+  border-radius: 1rem;
+  overflow: hidden;
+  background-size: cover;
+  background-position: center;
+  color: white;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+/* "Lift" and shadow effect on hover */
+.feature-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2), 0 8px 10px -6px rgba(0, 0, 0, 0.2);
+}
+
+/* Container for all content inside the card */
+.card-content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  height: 100%;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.5); /* Improves text readability */
+}
+
+/* Styling for the icon's container */
+.icon-container {
+  background-color: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(5px); /* Frosted glass effect */
+  -webkit-backdrop-filter: blur(5px);
+  border-radius: 0.75rem;
+  padding: 0.75rem;
+  width: fit-content;
+  margin-bottom: 1rem;
+  transition: transform 0.3s ease;
+}
+
+/* Card title styles */
+.card-title {
+  font-size: 1.75rem; /* 28px */
+  font-weight: 700;
+  line-height: 1.2;
+  transition: transform 0.4s ease, opacity 0.3s ease;
+}
+
+/* Card description styles (hidden by default) */
+.card-description {
+  margin-top: 0.5rem;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  max-height: 0; /* Hidden by default */
+  opacity: 0;
+  color: rgba(255, 255, 255, 0.85);
+  transform: translateY(10px); /* Start slightly below */
+  transition: max-height 0.4s ease, opacity 0.4s ease 0.1s, transform 0.4s ease;
+}
+
+/* --- HOVER STATE ANIMATIONS --- */
+
+/* Move the icon up on hover */
+.feature-card:hover .icon-container {
+  transform: translateY(-12px);
+}
+
+/* Move the title up to make space for the description */
+.feature-card:hover .card-title {
+  transform: translateY(-20px);
+}
+
+/* Reveal the description on hover */
+.feature-card:hover .card-description {
+  max-height: 200px; /* Reveal the text */
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.icon-container {
+  padding: 0.4rem; /* Smaller padding */
+  border-radius: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.card-title {
+  font-size: 1rem; /* Smaller title text */
+  font-weight: 600;
+}
+
+.card-description {
+  margin-top: 0.25rem;
+  font-size: 0.75rem; /* Smaller description text */
+  line-height: 1.4;
+}

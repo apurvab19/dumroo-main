@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { AlertTriangle, X, Crown } from 'lucide-react';
+import { AlertTriangle, X, Crown, CreditCard, RefreshCcw } from 'lucide-react';
 import Navigation from './Navigation';
 import Announcement from './Announcement';
 import Hero from './HeroSection';
@@ -23,7 +23,6 @@ const Landing: React.FC = () => {
   // Handle scroll to section after navigation
   useEffect(() => {
     if (location.state?.scrollTo) {
-      // Small delay to ensure content is rendered
       setTimeout(() => {
         scrollTo(location.state.scrollTo);
       }, 100);
@@ -34,7 +33,6 @@ const Landing: React.FC = () => {
   useEffect(() => {
     const hasSeenJulyNotification = sessionStorage.getItem('july_discount_notification_seen');
     if (!hasSeenJulyNotification) {
-      // Show popup after a short delay to ensure page is loaded
       setTimeout(() => {
         setShowJulyNotification(true);
       }, 2000);
@@ -47,7 +45,7 @@ const Landing: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen overflow-x-hidden"> {/* Prevent horizontal scroll on all screens */}
+    <div className="min-h-screen overflow-x-hidden font-sans">
       <Navigation />
       <Announcement />
       <Hero />
@@ -60,99 +58,71 @@ const Landing: React.FC = () => {
       <CallToAction />
       <Footer />
 
-      {/* July Discount Notification Popup */}
+      {/* Redesigned Notification Popup */}
       {showJulyNotification && (
-        <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center p-2 sm:p-4 z-50 animate-in fade-in duration-300">
-          <div className="bg-gradient-to-br from-red-50 via-orange-50 to-yellow-50 rounded-3xl shadow-2xl max-w-lg w-full border-2 border-red-200/50 relative overflow-hidden animate-in zoom-in-95 duration-500">
-            {/* Decorative background elements */}
-            <div className="absolute top-0 right-0 w-20 sm:w-32 h-20 sm:h-32 bg-gradient-to-bl from-red-200/30 to-transparent rounded-full -translate-y-8 sm:-translate-y-16 translate-x-8 sm:translate-x-16"></div>
-            <div className="absolute bottom-0 left-0 w-16 sm:w-24 h-16 sm:h-24 bg-gradient-to-tr from-orange-200/30 to-transparent rounded-full translate-y-6 sm:translate-y-12 -translate-x-6 sm:-translate-x-12"></div>
-            
-            <div className="relative p-8">
-              {/* Header with close button */}
-              <div className="flex items-start justify-between mb-6">
-                <div className="flex items-center gap-4">
-                  <div className="w-14 h-14 bg-gradient-to-br from-red-500 to-orange-500 rounded-2xl flex items-center justify-center shadow-lg animate-pulse">
-                    <AlertTriangle className="h-7 w-7 text-white" />
-                  </div>
-                  <div>
-                    <h3 className="text-2xl font-bold bg-gradient-to-r from-red-700 to-orange-600 bg-clip-text text-transparent">
-                      🔥 July Special Pricing!
-                    </h3>
-                    <p className="text-red-600 text-sm font-medium">Limited time offer • Act fast!</p>
-                  </div>
-                </div>
-                <button
-                  onClick={handleCloseJulyNotification}
-                  className="text-red-400 hover:text-red-600 transition-all duration-200 p-2 hover:bg-red-100 rounded-xl"
-                >
-                  <X className="h-6 w-6" />
-                </button>
-              </div>
+        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center p-4 z-50 animate-in fade-in duration-300">
+          <div className="bg-white rounded-xl shadow-2xl w-full max-w-xl mx-auto border border-gray-200 relative animate-in zoom-in-95 duration-500">
+            <button
+              onClick={handleCloseJulyNotification}
+              className="absolute top-3 right-3 text-gray-400 hover:text-gray-600 transition-colors p-1 rounded-full hover:bg-gray-100"
+            >
+              <X className="h-5 w-5" />
+            </button>
 
-              {/* Content */}
-              <div className="space-y-4 mb-8">
-                <div className="bg-white/70 backdrop-blur-sm rounded-2xl p-5 border border-red-200/50 shadow-sm">
-                  <p className="text-red-700 font-bold text-xl text-center">
-                    🔥 <span className="text-3xl">60% OFF</span> July Special
-                  </p>
+            <div className="p-8">
+              <div className="flex items-center gap-4 mb-4">
+                <div className="w-12 h-12 bg-[#ffbd4a] rounded-full flex items-center justify-center text-white shadow-md">
+                  <AlertTriangle className="h-6 w-6" />
                 </div>
-                
-                <div className="bg-gradient-to-r from-blue-50 to-purple-50 rounded-2xl p-4 border border-blue-200/50">
-                  <p className="text-blue-700 font-semibold text-center">
-                    📅 <span className="bg-blue-200 px-2 py-1 rounded-lg">14 Days Free Trial</span>
-                  </p>
-                </div>
-                
-                <div className="bg-gradient-to-r from-green-50 to-emerald-50 rounded-2xl p-4 border border-green-200/50">
-                  <p className="text-green-700 font-semibold text-center">
-                    🎯 Start now & get same price for entire year
-                  </p>
-                </div>
-                
-                <div className="bg-gradient-to-r from-red-500 to-orange-500 rounded-2xl p-3 text-center relative overflow-hidden">
-                  <div className="absolute inset-0 opacity-20 bg-white/10"></div>
-                  <p className="text-white font-bold text-sm relative z-10 flex items-center justify-center gap-2">
-                    <span className="animate-pulse">⏰</span>
-                    Limited time - Act fast!
-                    <span className="animate-pulse">🚀</span>
-                  </p>
+                <div>
+                  <h3 className="text-2xl font-bold text-gray-800">
+                    July Special Pricing!
+                  </h3>
+                  <p className="text-sm text-gray-500">Limited time offer</p>
                 </div>
               </div>
 
-              {/* CTA Buttons */}
+              <div className="text-center mb-6">
+                <p className="text-4xl font-extrabold text-[#325bff] tracking-tight">
+                  <span className="text-6xl">60% OFF</span>
+                </p>
+                <p className="text-lg font-medium text-gray-600 mt-1">
+                  Limited-time offer for the entire year
+                </p>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-sm text-gray-600 mb-6">
+                <div className="flex items-center gap-2 p-3 bg-gray-100 rounded-lg">
+                  <Crown className="h-4 w-4 text-yellow-500" />
+                  <span>14 Days Free Trial</span>
+                </div>
+                <div className="flex items-center gap-2 p-3 bg-gray-100 rounded-lg">
+                  <CreditCard className="h-4 w-4 text-blue-500" />
+                  <span>No Credit Card</span>
+                </div>
+                <div className="flex items-center gap-2 p-3 bg-gray-100 rounded-lg">
+                  <RefreshCcw className="h-4 w-4 text-green-500" />
+                  <span>Cancel Anytime</span>
+                </div>
+              </div>
+
               <div className="flex flex-col sm:flex-row gap-3">
                 <button
                   onClick={() => {
                     handleCloseJulyNotification();
                     navigate('/pricing');
                   }}
-                  className="bg-gradient-to-r from-red-600 to-orange-600 hover:from-red-700 hover:to-orange-700 text-white px-6 py-3 rounded-xl font-bold flex items-center gap-2 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 justify-center group"
+                  className="bg-[#325bff] hover:-translate-y-1 hover:shadow-lg text-white px-6 py-3 rounded-lg font-semibold flex-1 transition-colors flex items-center justify-center gap-2 shadow-md hover:shadow-lg"
                 >
-                  <Crown className="h-5 w-5 group-hover:animate-bounce" />
+                  <Crown className="h-5 w-5" />
                   Start Free Trial
                 </button>
                 <button
-                  onClick={() => {
-                    handleCloseJulyNotification();
-                    navigate('/pricing');
-                  }}
-                  className="bg-white/80 backdrop-blur-sm hover:bg-white text-red-700 border-2 border-red-300 hover:border-red-400 px-6 py-3 rounded-xl font-semibold transition-all duration-300 hover:shadow-lg"
+                  onClick={handleCloseJulyNotification}
+                  className="bg-gray-100 hover:bg-gray-100 hover:-translate-y-1 hover:shadow-lg text-gray-700 border border-gray-300 px-6 py-3 rounded-lg font-medium transition-colors flex-1"
                 >
                   More Info
                 </button>
-              </div>
-              
-              {/* Trust indicators */}
-              <div className="mt-6 flex items-center justify-center gap-6 text-sm text-gray-600">
-                <div className="flex items-center gap-2">
-                  <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-                  <span>No Credit Card Required</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></div>
-                  <span>Cancel Anytime</span>
-                </div>
               </div>
             </div>
           </div>

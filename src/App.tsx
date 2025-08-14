@@ -9,6 +9,9 @@ import Privacy from './components/Privacy';
 import Sitemap from './components/Sitemap';
 import WhitePaper from './components/WhitePaper';
 import TeacherPricing from './components/teacher-pricing';
+import Events from './components/Events';
+import Gallery from './components/Gallery';
+
 
 // Product pages
 import AnalyticsAI from './components/products/AnalyticsAI';
@@ -74,6 +77,10 @@ function App() {
           <Route path="/portals/parents" element={<ParentsPortal />} />
           <Route path="/portals/admins" element={<AdminsPortal />} />
           <Route path="/portals/homeschooling" element={<HomeschoolingEducatorPortal />} />
+
+          <Route path="/events" element={<Events />} />
+          <Route path="/gallery" element={<Gallery />} />
+
         </Routes>
         
       </div>
